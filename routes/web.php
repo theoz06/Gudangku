@@ -4,10 +4,11 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\kategoriController;
 use App\Http\Controllers\brandController;
-use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\uomController;
 use App\Http\Controllers\barangController;
-
+use App\Http\Controllers\receivingController;
+use App\Http\Controllers\issuingController;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,10 @@ use App\Http\Controllers\barangController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', function(){
+    return view('Login.login');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -96,8 +101,16 @@ Route::get('/MD-UoM',function(){
 
 //Master Data Barang
 Route::resource('MD-Barang',barangController::class);
+
 Route::get('addItem', [barangController::class, 'create'])->name('addItem');
+
 Route::post('addItem', [barangController::class, 'store'])->name('addItem');
+
+Route::get('/editItem/{id}', [barangController::class, 'edit'])->name('editItem');
+
+Route::post('/editItem/{id}', [barangController::class, 'update'])->name('editItem');
+
+Route::get('/delete/{id}', [barangController::class,'destroy'])->name('delete');
 
 Route::get('/MD-Barang',function(){
 
@@ -120,18 +133,19 @@ Route::get('/addItem',function(){
     $dataKategori = DB::table('kategori')->get();
     $dataUoM = DB::table('uom')->get();
 
-    return view('addItem', ['listItem'=>$dataBarang,
-                 'listBrand'=>$dataBrand, 
-                 'listKategori'=>$dataKategori, 
-                 'listUoM'=>$dataUoM]);
-
+    return view('addItem', [
+        'listItem'=>$dataBarang,
+        'listBrand'=>$dataBrand, 
+        'listKategori'=>$dataKategori, 
+        'listUoM'=>$dataUoM
+    ]);
 });
-
-
 
 Route::get('/Rpt-issuing',function(){
     return view('Rpt-issuing');
 });
+
+// Route Report-Receiving
 
 Route::get('/Rpt-receiving',function(){
     return view('Rpt-receiving');
@@ -141,12 +155,40 @@ Route::get('/Rpt-stock',function(){
     return view('Rpt-stock');
 });
 
+// Route Receiving
+Route::get('receiving', [receivingController::class]);
+
+Route::get('addReceiving', [receivingController::class, 'create'])->name('addReceiving');
+
+Route::post('addReceiving', [receivingController::class, 'store'])->name('addReceiving');
+
+Route::get('delete/{id}', [receivingController::class, 'destroy'])->name('delete');
+
+Route::get('receivingView',[receivingController::class, 'tampil'])->name('receivingView');
+
 Route::get('/receiving',function(){
-    return view('receiving');
+
+    $newReceiving = DB::table('receiving')->get();
+
+    return view('receiving',['newReceiving'=>$newReceiving]);
 });
 
+// Route Issuing
+Route::get('issuing', [issuingController::class]);
+
+Route::get('addIssuing',[issuingController::class, 'create'])->name('addIssuing');
+
+Route::post('addIssuing', [issuingController::class, 'store'])->name('addIssuing');
+
+Route::get('delete/{id}',[issuingController::class, 'destroy'])->name('delete');
+
+Route::get('Issuing/IssuingView',[issuingController::class, 'tampil'])->name('IssuingView');
+
 Route::get('/issuing',function(){
-    return view('issuing');
+
+    $newIssuing = DB::table('issuing')->get();
+
+    return view('issuing', ['newIssuing'=>$newIssuing]);
 });
 
 

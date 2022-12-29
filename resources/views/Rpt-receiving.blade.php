@@ -1,5 +1,5 @@
 @extends('layouts.mainlayout')
-@section('title', 'Receiving')
+@section('title', 'Report-receiving')
 
 @section('content')
 <main class="main-container addItem-form">

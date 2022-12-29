@@ -77,9 +77,9 @@
               </div>
             </div>
             <div class="row mb-3">
-              <label for="nameGambar" class="col-sm-2 col-form-label">Gambar</label>
+              <label for="foto" class="col-sm-2 col-form-label">Gambar</label>
               <div class="col-sm-4">
-                <input type="file" class="form-control" name="gambar" id="gambar">
+                <input type="file" class="form-control" name="foto" id="foto">
               </div>
             </div>
             <div class="row mb-3">

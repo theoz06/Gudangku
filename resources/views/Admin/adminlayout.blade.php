@@ -34,7 +34,7 @@
                             <div class="dropdown">                                    
                                 <button class="btn login-info" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                    <i class="uil uil-user-circle"></i>
-                                    <span class="dropdown-toggle login-as">Operator</span>
+                                    <span class="dropdown-toggle login-as">Admin</span>
                                 </button>
 
                                 <ul class="dropdown-menu">
@@ -62,7 +62,7 @@
                                 <i class="uil uil-shop"></i>
                             </li>
                             <li class="header-item-brand">
-                                <a href="/dashboard" class="brand-name ">GudangKu</a>
+                                <a href="/Admin/dashboard" class="brand-name ">GudangKu</a>
                                 <span class="header-subtitle">Inventory Sistem</span>
                             </li>
                         </ul>
@@ -79,33 +79,7 @@
                                 <div class="sidebar-list-icon">
                                     <i class=" uil uil-home"></i>
                                 </div>
-                                <a href="/dashboard" class="sidebar-link sidebar-title">Dashboard</a>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <hr class="sidebar-divider">
-
-                    <ul class="sidebar-list">
-                        <li class="sidebar-list-item accordion-item ">
-                            <div class="sidebar-list-container accordion-header" id="flush-headingOne">
-                                <button class="accordion-button panel-heading collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                    <div class="sidebar-list-icon">
-                                        <i class="uil uil-briefcase-alt"></i>
-                                    </div>
-                                    <a href="" class="sidebar-link sidebar-title">Master Data</a>
-                                    <i class="uil uil-angle-down accordion-arrow"></i>
-                                </button>
-                            </div>
-                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    <ul class="accordion-content">
-                                        <li class="accordion-content-menu " type="button"><a href="/MD-Kategori">Kategori</a></li>
-                                        <li class="accordion-content-menu " type="button"><a href="/MD-Brand">Brand</a></li>
-                                        <li class="accordion-content-menu " type="button"><a href="/MD-UoM">UoM</a></li>
-                                        
-                                    </ul>
-                                </div>
+                                <a href="/Admin/dashboard" class="sidebar-link sidebar-title">Dashboard</a>
                             </div>
                         </li>
                     </ul>
@@ -116,63 +90,13 @@
                         <li class="sidebar-list-item">
                             <div class="sidebar-list-container">
                                 <div class="sidebar-list-icon">
-                                    <i class="uil uil-monitor"></i>
+                                    <i class="uil uil-user"></i>
                                 </div>
-                                <a href="/MD-Barang" class="sidebar-link sidebar-title">Master Data Barang</a>
+                                <a href="/Admin/addUser" class="sidebar-link sidebar-title">Management User</a>
                             </div>
                         </li>
                     </ul>
 
-                    <hr class="sidebar-divider">
-
-                    <ul class="sidebar-list">
-                        <li class="sidebar-list-item">
-                            <div class="sidebar-list-container">
-                                <div class="sidebar-list-icon">
-                                    <i class="uil uil-shopping-cart"></i>
-                                </div>
-                                <a href="/receiving" class="sidebar-link sidebar-title">Receiving (In)</a>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <hr class="sidebar-divider">
-
-                    <ul class="sidebar-list">
-                        <li class="sidebar-list-item ">
-                            <div class="sidebar-list-container">
-                                <div class="sidebar-list-icon">
-                                    <i class="uil uil-truck"></i>
-                                </div>
-                                <a href="/issuing" class="sidebar-link sidebar-title">Issuing (Out)</a>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <hr class="sidebar-divider">
-
-                    <ul class="sidebar-list">
-                        <li class="sidebar-list-item accordion-item">
-                            <div class="sidebar-list-container accordion-header" id="flush-headingTwo">
-                                <button class="accordion-button panel-heading collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseOne">
-                                    <div class="sidebar-list-icon">
-                                        <i class="uil uil-print"></i>
-                                    </div>
-                                    <a href="" class="sidebar-link sidebar-title">Report</a>
-                                    <i class="uil uil-angle-down accordion-arrow"></i>
-                                </button>
-                            </div>
-                            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    <ul class="accordion-content">
-                                        <li class="accordion-content-menu " type="button"><a href="/Rpt-receiving">Receiving (in)</a></li>
-                                        <li class="accordion-content-menu " type="button"><a href="/Rpt-issuing">Issuing (out)</a></li>
-                                        <li class="accordion-content-menu " type="button"><a href="/Rpt-stock">Stock</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
                     <hr class="sidebar-divider">
                 </div>
             </div>

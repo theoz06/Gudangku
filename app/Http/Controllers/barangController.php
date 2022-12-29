@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\DB;
 use App\Models\kategori;
 use App\Models\barang;
 use App\Models\brand;
 use App\Models\uom;
-use DB;
+
 
 
 class barangController extends Controller
@@ -31,7 +32,6 @@ class barangController extends Controller
      */
     public function create()
     {
-        $kategoriLIst = kategori::select('id','Nama_kategori');
 
         return view('addItem');
     }
@@ -43,19 +43,18 @@ class barangController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
        
         $newBarang = new barang;
         $kategoriLIst = kategori::all();
         $brandList = brand::all();
         $satuanList = uom::all();
         
-        $newBarang->Gambar = ""; //biar nilai awal kosong dulu
-        if($request->hasFile('Gambar')){
-            $request->file('Gambar')->move('gambarBarang/', $request->file('Gambar')->getClientOriginalName());
-            $newBarang->Gambar = $request->file('Gambar')->getClientOriginalName();
-        }
-        
+        $foto_file = $request->file('foto');
+        $foto_ekstensi = $foto_file->extension();
+        $foto_nama = date('ymdhis').".".$foto_ekstensi;
+        $foto_file->move(public_path('Gambar'), $foto_nama);
+
         $newBarang->Nama_barang = $request->input('namaBarang');
         $newBarang->Price = $request->input('price');
         $newBarang->Brand = $request->input('namaBrand');
@@ -63,6 +62,7 @@ class barangController extends Controller
         $newBarang->UoM = $request->input('satuan');
         $newBarang->Catatan = $request->input('note');
         $newBarang->jPengiriman = $request->input('jenisKurir');
+        $newBarang->Gambar = $foto_nama; 
 
         
         
@@ -80,7 +80,7 @@ class barangController extends Controller
      */
     public function show($id)
     {
-        //
+        // 
     }
 
     /**
@@ -89,9 +89,16 @@ class barangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $item = barang::query()->findOrFail($id);
+
+        return view('editItem', [
+            'data' => $item,
+            'listBrand' => brand::query()->get(),
+            'listKategori' => kategori::query()->get(),
+            'listUoM' => uom::query()->get(),
+        ]);
     }
 
     /**
@@ -103,7 +110,37 @@ class barangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $newBarang = barang::find($id);
+
+        $foto_file =$request->file('foto');
+        
+        if ($foto_file) {
+            $foto_ekstensi = $foto_file->extension();
+    
+            $foto_nama = date('ymdhis').".".$foto_ekstensi;
+    
+            $foto_file->move(public_path('Gambar'), $foto_nama);
+
+            $newBarang->Gambar = $foto_nama;
+        }
+
+        $newBarang->Nama_barang = $request->input('namaBarang');
+
+        $newBarang->Kategori = $request->input('namaKategori');
+
+        $newBarang->Brand = $request->input('namaBrand');
+
+        $newBarang->UoM = $request->input('satuan');
+
+        $newBarang->jPengiriman = $request->input('jenisKurir');
+
+        $newBarang->Price = $request->input('price');
+
+        $newBarang->Catatan = $request->input('note');
+        
+        $newBarang->save();
+
+        return redirect('MD-Barang')->with('status','Data barang BERHASIL di ubah');
     }
 
     /**
@@ -114,6 +151,10 @@ class barangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $newBarang = barang::find($id);
+
+        $newBarang->delete();
+
+        return redirect()->back()->with('status', 'Item berhasil dihapus');
     }
 }

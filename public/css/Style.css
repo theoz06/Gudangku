@@ -396,12 +396,25 @@ a, li, ul {
 }
 
 .inputform{
+   padding: 20px;
+   border-color: #E2E3FC;
    position: relative;
-   justify-content: center;
-   text-align: center;
-   align-items: center;
+  
 }
+
+
 /*--- Kategori End ---*/
+
+.data-table{
+   display: flex;
+   padding: 0;
+   margin: 0;
+   border: 1px solid black;
+}
+
+.show {
+   width: 900px;
+}
 
 /*--- Media queries --*/
 

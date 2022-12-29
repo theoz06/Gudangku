@@ -25,51 +25,49 @@
         <!-- TOMBOL TAMBAH DATA -->
         <div class="pb-3 d-flex add-btn">
             <h2>DATA Receiving</h2>
-            <a type="button" class="btn btn-primary " href="/addItem" data-bs-target="#addbarang" data-bs-whatever="@mdo">+Add Item</a>
+            <a type="button" class="btn btn-primary " href="/addReceiving" data-bs-target="#addbarang" data-bs-whatever="@mdo">+Add Item</a>
         </div>
         <hr>
     
-    <table id="datatable" class="table table-striped table-bordered">
-        <thead>
-            <tr>
-                <th class="col-sm-1">No</th>
-                <th class="col-md-4">Date Time</th>
-                <th class="col-md-4">No Referensi</th>
-                <th class="col-md-4">Supplier</th>
-                <th class="col-md-1">Remarks</th>
-                <th class="col-md-1">Aksi</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <th class="col-sm-1">No</th>
-                <th class="col-md-4">Date Time</th>
-                <th class="col-md-4">No Referensi</th>
-                <th class="col-md-4">Supplier</th>
-                <th class="col-md-4">Remarks</th>
-                <th class="col-md-1">Aksi</th>
-            </tr>
-        </tfoot>
-        <tbody>
-                
+        <table id="datatable" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th class="col-sm-1">No</th>
+                    <th class="col-md-4">Date Time</th>
+                    <th class="col-md-4">No Referensi</th>
+                    <th class="col-md-4">Supplier</th>
+                    <th class="col-md-1">Remarks</th>
+                    <th class="col-md-1">Aksi</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th class="col-sm-1">No</th>
+                    <th class="col-md-4">Date Time</th>
+                    <th class="col-md-4">No Referensi</th>
+                    <th class="col-md-4">Supplier</th>
+                    <th class="col-md-4">Remarks</th>
+                    <th class="col-md-1">Aksi</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                    
+                @foreach($newReceiving as $key=>$data)
+                    <tr>    
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$data->Date}}</td>
+                        <td>{{$data->No_referensi}}</td>
+                        <td>{{$data->Supplier}}</td>
+                        <td>{{$data->Catatan}}</td>
+                        <td>
+                            <a type="button" href="/receivingView" class="btn uil uil-folder-open bg-warning " style="color: green;  border:none; border-radius:3px"></a>
+                        </td>              
+                    </tr>          
 
-                <tr>    
-                    <td>No</td>
-                    <td>Date Time</td>
-                    <td>No Referensi</td>
-                    <td>Supplier</td>
-                    <td>Remarks</td>
-                    <td>
-                        <a href="#" class="uil uil-folder-open"></a>
-                    </td>              
-                </tr>          
-
-              
-            </tbody>
-        </table>
+                @endforeach  
+                </tbody>
+            </table>
     </div>
-
-   
 
 <!-- AKHIR DATA -->
 

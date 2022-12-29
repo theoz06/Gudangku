@@ -1,12 +1,13 @@
 @extends('layouts.mainlayout')
-@section('title', 'Issuing')
+@section('title', 'Management User')
+
 
 @section('content')
 <main class="main-container addItem-form">
 
     <div class="main-title" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Transaction > Issuing
+            <li class="breadcrumb-item active" aria-current="page">Data > User
         </ol>
     </div>
     <hr>
@@ -24,58 +25,63 @@
 
         <!-- TOMBOL TAMBAH DATA -->
         <div class="pb-3 d-flex add-btn">
-            <h2>DATA Issuing</h2>
-            <a type="button" class="btn btn-primary " href="/addIssuing" data-bs-target="#addbarang" data-bs-whatever="@mdo">+Add Item</a>
+            <h2>DATA BARANG</h2>
+            <a type="button" class="btn btn-primary " href="/addUser" data-bs-target="#addbarang" data-bs-whatever="@mdo">+Add User</a>
         </div>
         <hr>
     
-    <table id="datatable" class="table table-striped table-bordered">
+    <table id="datatableBarang" class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th class="col-sm-1">No</th>
-                <th class="col-md-4">Date Time</th>
-                <th class="col-md-4">No Referensi</th>
-                <th class="col-md-4">Picker</th>
-                <th class="col-md-1">Remarks</th>
+                <th class="col-md-3">Username</th>
+                <th class="col-md-3">Nama</th>
+                <th class="col-md-1">Password</th>
+                <th class="col-md-3">Hak Akses</th>
                 <th class="col-md-1">Aksi</th>
             </tr>
         </thead>
         <tfoot>
             <tr>
                 <th class="col-sm-1">No</th>
-                <th class="col-md-4">Date Time</th>
-                <th class="col-md-4">No Referensi</th>
-                <th class="col-md-4">Picker</th>
-                <th class="col-md-4">Catatan</th>
+                <th class="col-md-3">Username</th>
+                <th class="col-md-3">Nama</th>
+                <th class="col-md-1">Password</th>
+                <th class="col-md-3">Hak Akses</th>
                 <th class="col-md-1">Aksi</th>
             </tr>
         </tfoot>
         <tbody>
                 
-            @foreach ($newIssuing as $data)
+            {{-- listbrand = variable yang di-set melalui backend --}}
             <tr>    
-                <td>{{$loop->iteration}}</td>
-                <td>{{$data->Date}}</td>
-                <td>{{$data->No_referensi}}</td>
-                <td>{{$data->Picker}}</td>
-                <td>{{$data->Catatan}}</td>
+
+                <td>1</td>
+                <td>dummy</td>
+                <td>dummy</td>
+                <td>dummy</td>
+                <td>dummy</td>
                 <td>
-                    <a type="button" href="/Issuing/IssuingView" class="btn uil uil-folder-open bg-warning " style="color: green;  border:none; border-radius:3px"></a>
+                    <a href="#" class="btn btn-warning btn-sm uil uil-edit editBarang" ></a>
+                    <a href='#' class="btn btn-danger btn-sm uil uil-trash-alt"></a>
                 </td>              
             </tr>
-            @endforeach          
+
               
             </tbody>
         </table>
     </div>
+    {{-- @foreach($listItem as $key=>$data)
+      
+    @endforeach --}}
 
    
 
 <!-- AKHIR DATA -->
 
-    <script> 
+    <script>
         $(document).ready(function(){
-            $('#datatable').DataTable();
+            $('#datatableBarang').DataTable();
         });
     </script>
 </main>
