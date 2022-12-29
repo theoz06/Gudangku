@@ -54,7 +54,7 @@
                     
                 @foreach($newReceiving as $key=>$data)
                     <tr>    
-                        <td>{{$loop->iteration}}</td>
+                        <td>{{$loop->iteration}}</td> 
                         <td>{{$data->Date}}</td>
                         <td>{{$data->No_referensi}}</td>
                         <td>{{$data->Supplier}}</td>

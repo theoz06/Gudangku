@@ -2,7 +2,7 @@
 @section('title', 'Edit Item')
 
 @section('content')
-
+ 
 <div class="main-container ">
 
   <div class="main-title" aria-label="breadcrumb">
@@ -79,7 +79,6 @@
               <option value="Reguler" selected="{{ $data->jPengiriman == 'Reguler' ? true : false }}">Reguler</option>
               <option value="Express" selected="{{ $data->jPengiriman == 'Express' ? true : false }}">Express</option>
             </select>
-            
           </div>
         </div>
 

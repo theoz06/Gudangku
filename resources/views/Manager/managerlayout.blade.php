@@ -100,9 +100,9 @@
                             <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
                                     <ul class="accordion-content">
-                                        <li class="accordion-content-menu " type="button"><a href="/Rpt-receiving">Receiving (in)</a></li>
-                                        <li class="accordion-content-menu " type="button"><a href="/Rpt-issuing">Issuing (out)</a></li>
-                                        <li class="accordion-content-menu " type="button"><a href="/Rpt-stock">Stock</a></li>
+                                        <li class="accordion-content-menu " type="button"><a href="/Manager/Rpt-receiving">Receiving (in)</a></li>
+                                        <li class="accordion-content-menu " type="button"><a href="/Manager/Rpt-issuing">Issuing (out)</a></li>
+                                        <li class="accordion-content-menu " type="button"><a href="/Manager/Rpt-stock">Stock</a></li>
                                     </ul>
                                 </div>
                             </div>

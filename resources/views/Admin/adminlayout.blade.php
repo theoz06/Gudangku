@@ -92,7 +92,7 @@
                                 <div class="sidebar-list-icon">
                                     <i class="uil uil-user"></i>
                                 </div>
-                                <a href="/Admin/addUser" class="sidebar-link sidebar-title">Management User</a>
+                                <a href="/Admin/managUser" class="sidebar-link sidebar-title">Management User</a>
                             </div>
                         </li>
                     </ul>

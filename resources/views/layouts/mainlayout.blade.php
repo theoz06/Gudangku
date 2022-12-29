@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> GudangKu || @yield('title')</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="/js/jquery-3.6.3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -28,24 +27,23 @@
                     </button>
                     </div>
                 <div class="header-right">
-                    <ul class="notification">
-                            
+                    <ul class="notification">     
                         <li class="notif-item">
                             <div class="dropdown">                                    
                                 <button class="btn login-info" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                   <i class="uil uil-user-circle"></i>
-                                    <span class="dropdown-toggle login-as">Operator</span>
+                                    <i class="uil uil-user-circle"></i>
+                                    <span  class="dropdown dropdown-toggle login-as">Operator</span>
                                 </button>
 
                                 <ul class="dropdown-menu">
-                                    <li><a href="#" class="dropdown-item">
+                                    <li><a href="{{route('auth.login')}}" class="dropdown-item">
                                         Log Out
                                     <i class="uil uil-sign-out-alt"></i>
                                     </a></li>
-                                </ul>
+                                </ul> 
                             </div>    
                         </li>    
-                     </ul>
+                    </ul>
                 </div>
         </header>
         <!-- Header End -->
@@ -189,7 +187,31 @@
         <!--main end-->
 
     </div>
+    <script src="/js/jquery-3.6.3.min.js"></script>
     
+    <script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name=""csrf-token]').attr('content')
+        }
+    });
+    </script>
+
+    <script type="text/javascript">
+        $("#kd_barang").change(function(){
+            var kd_barang = $("#kd_barang").val();
+            $.ajax({
+                type: "GET",
+                url : "/pengadaan/ajax",
+                data: "kd_barang="+kd_barang,
+                cache:false,
+                success: function(data){
+                    $('#detail_barang').html(data);
+                }
+            }); 
+        });    
+    </script>
+
     
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>

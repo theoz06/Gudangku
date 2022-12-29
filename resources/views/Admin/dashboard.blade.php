@@ -1,4 +1,4 @@
-@extends('layouts.mainlayout')
+@extends('Admin.adminlayout')
 @section('title','Home')
 
 @section('content')
@@ -15,7 +15,7 @@
         <div class="card-inner">
             <p class="title">BARANG</p>
         </div>
-        <span class="title">10</span>
+        <span class="title">{{$barang_Count}}</span>
         <i class="uil uil-desktop bg-info"></i>
     </div>
 
@@ -50,7 +50,7 @@
             <div class="card-inner">
                 <p class="title">Receiving</p>
             </div>
-            <span class="title">10</span>
+            <span class="title">{{$receivingCount}}</span>
             <i class="uil uil-shopping-cart"></i>
         </div>
 
@@ -66,7 +66,7 @@
             <div class="card-inner">
                 <p class="title">Issuing</p>
             </div>
-            <span class="title">10</span>
+            <span class="title">{{$issuingCount}}</span>
             <i class="uil uil-truck "></i>
         </div>
     </div>

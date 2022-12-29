@@ -35,8 +35,8 @@
                 <th class="col-sm-1">No</th>
                 <th class="col-md-4">Nama Barang</th>
                 <th class="col-md-4">Kategori</th>
-                <th class="col-md-4">Harga</th>
-                <th class="col-md-1">Stok</th>
+                <th class="col-md-4">Harga (Rp)</th>
+                <th class="col-md-2">Stok</th>
             </tr>
         </thead>
         <tfoot>
@@ -45,21 +45,21 @@
                 <th class="col-md-4">Nama Barang</th>
                 <th class="col-md-2">Kategori</th>
                 <th class="col-md-3">Harga</th>
-                <th class="col-md-1">Stok</th>
+                <th class="col-md-2">Stok</th>
             </tr>
         </tfoot>
         <tbody>
                 
-
-                <tr>    
-                    <td>No</td>
-                    <td>Nama Barang</td>
-                    <td>Kategori</td>
-                    <td>Harga</td>
-                    <td>Stock</td>          
-                </tr>          
-
-              
+            @foreach ($data as $d)
+            <tr>    
+                <td>{{$loop->iteration}}</td>
+                <td>{{$d->Nama_barang}}</td>
+                <td>{{$d->Kategori}}</td>
+                <td>Rp. {{$d->Price}}</td>
+                <td>Stock</td>          
+            </tr>
+            @endforeach
+                        
             </tbody>
         </table>
     </div>

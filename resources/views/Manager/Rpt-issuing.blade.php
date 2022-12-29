@@ -1,4 +1,4 @@
-@extends('layouts.mainlayout')
+@extends('Manager.managerlayout')
 @section('title', 'Report-Issuing')
 
 @section('content')
@@ -69,7 +69,6 @@
             </tbody>
         </table>
     </div>
-
    
 
 <!-- AKHIR DATA -->

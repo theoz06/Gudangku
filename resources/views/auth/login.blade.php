@@ -13,24 +13,33 @@
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('/css/style-login.css')); ?>">
 </head>
 <body>
-    
+  @if (Session::get('fail'))
+  <div class="alert alert-danger" role="alert">
+    {{Session::get('fail')}}
+  </div>
+  @endif
     <div class="login-box">
         <h1>Login</h1>
         <div class="logo-container">
             <i class="uil uil-shop"></i>
         </div>
-        <form name="Login">
+        <form action="{{route('auth.check')}}" method="POST">
+
+          @method('POST')
+          @csrf
             <div class="textbox">
              <div class="input-area">
                <i class="uil uil-user"></i>
-               <input type="text" placeholder="Username" required>
+               <input type="text" name="username" id="username" placeholder="Username" value="{{old('username')}}" autofocus>
+               <span  class="text-danger">@error('username'){{$message}}@enderror</span>
               </div>
             </div>
 
           <div class="textbox">
             <div class=" input-area">
               <i class="uil uil-lock"></i>
-              <input type="password" placeholder="Password" required>
+              <input type="password" name="password" id="password" placeholder="Password" value="{{old('password')}}">
+              <span class="text-danger">@error('password'){{$message}}@enderror</span>
             </div>
           </div>
           <button>Log In</button>

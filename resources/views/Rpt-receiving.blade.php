@@ -6,11 +6,11 @@
 
     <div class="main-title" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Transaction > Receiving
+            <li class="breadcrumb-item active" aria-current="page">Report > Receiving
         </ol>
     </div>
     <hr>
-    
+     
 <!-- START DATA -->
     <div class="my-3 p-3 bg-body rounded shadow-sm">
 
@@ -33,10 +33,10 @@
         <thead>
             <tr>
                 <th class="col-sm-1">No</th>
-                <th class="col-md-4">Nama Barang</th>
-                <th class="col-md-4">Date Time</th>
-                <th class="col-md-4">No Referensi</th>
-                <th class="col-md-4">Supplier</th>
+                <th class="col-md-3">Nama Barang</th>
+                <th class="col-md-3">Date Time</th>
+                <th class="col-md-3">No Referensi</th>
+                <th class="col-md-6">Supplier</th>
                 <th class="col-md-1">Jumlah</th>
                 <th class="col-md-1">Satuan</th>
             </tr>
@@ -44,27 +44,28 @@
         <tfoot>
             <tr>
                 <th class="col-sm-1">No</th>
-                <th class="col-md-4">Nama Barang</th>
-                <th class="col-md-4">Date Time</th>
-                <th class="col-md-4">No Referensi</th>
-                <th class="col-md-4">Supplier</th>
+                <th class="col-md-3">Nama Barang</th>
+                <th class="col-md-3">Date Time</th>
+                <th class="col-md-3">No Referensi</th>
+                <th class="col-md-6">Supplier</th>
                 <th class="col-md-1">Jumlah</th>
                 <th class="col-md-1">Satuan</th>
             </tr>
         </tfoot>
         <tbody>
                 
-
+                @foreach ($data as $d)
                 <tr>    
-                    <td>No</td>
-                    <td>Nama Barang</td>
-                    <td>Date Time</td>
-                    <td>No Referensi</td>
-                    <td>Supplier</td>
-                    <td>Jumlah</td>
-                    <td>Satuan</td>             
-                </tr>          
-
+                    <td>{{$loop->iteration}}</td>
+                    <td>{{$d->Nama_Barang}}</td>
+                    <td>{{$d->Date}}</td>
+                    <td>{{$d->No_referensi}}</td>
+                    <td>{{$d->Supplier}}</td>
+                    <td>{{$d->JumlahMasuk}}</td>
+                    <td>{{$d->UoM}}</td>             
+                </tr>
+                @endforeach
+                          
               
             </tbody>
         </table>
