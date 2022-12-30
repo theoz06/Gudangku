@@ -38,7 +38,7 @@
                                 </button>
 
                                 <ul class="dropdown-menu">
-                                    <li><a href="#" class="dropdown-item">
+                                    <li><a href="{{route('auth.logout')}}" class="dropdown-item">
                                         Log Out
                                     <i class="uil uil-sign-out-alt"></i>
                                     </a></li>

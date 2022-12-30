@@ -16,8 +16,7 @@ class authCheck
      */
     public function handle(Request $request, Closure $next)
     {
-        
-        if(!session()->has('LoggedUser') && ($request->path() !='auth/login')){
+        if(!session()->has('LoggedUser') && $request->path() !='auth/login'){
             return redirect('auth/login')->with('fail', 'Anda belum log In!');
         }
 

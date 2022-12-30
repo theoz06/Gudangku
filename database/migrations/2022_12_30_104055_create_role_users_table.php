@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('admin', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama');
-            $table->string('username');
-            $table->string('password');
-            $table->enum('hakAkses',['Operator', 'Admin', 'Manager'])->default('Operator');
+        Schema::create('role_users', function (Blueprint $table) {
+            $table->integer('role_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin');
+        Schema::dropIfExists('role_users');
     }
 };

@@ -17,7 +17,7 @@ class mainController extends Controller
     function check(Request $request){
         $request->validate([
             'username'=>'required',
-            'password'=>'required|min:5|max:8'
+            'password'=>'required|min:5|max:8'  
         ]);
 
         $userInfo = admin::where('username', '=', $request->username)->first();
@@ -26,9 +26,20 @@ class mainController extends Controller
             return back()->with('fail','username tidak dikenal');
         }else{
             if($request->password==$userInfo->password){
-               
-                $request->session()->put('loggedUser',$userInfo->id);
-                return redirect('dashboard');
+                $request->session()->put('LoggedUser',$userInfo->id);
+                if ($userInfo->hakAkses == "Operator") {
+                    // dd("operator");
+                    return redirect('dashboard');
+                } elseif ($userInfo->hakAkses == "Admin") {
+                    // dd("admin");
+                    return redirect('/Admin/dashboard');
+                } elseif ($userInfo->hakAkses == "Manager") {
+                    // dd("manager");
+                    return redirect('/Manager/managerDashboard');
+                } else {
+
+                }
+                
             }else{
                 return back()->with('fail', 'Password tidak sesuai dengan user');
             }
@@ -42,9 +53,9 @@ class mainController extends Controller
         }
     }
 
-    // function dashboard(){
-    //     $data = ['LoggedUserInfo'=>admin::where('id','=',session('LoggedUser'))->first()];
+    function dashboard(){
+        $data = ['LoggedUserInfo'=>admin::where('id','=',session('LoggedUser'))->first()];
 
-    //     return view('mainlayout', '$data');
-    // }
+        return view('dashboard', $data);
+    }
 }

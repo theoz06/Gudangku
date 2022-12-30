@@ -33,12 +33,15 @@ Route::get('/', function(){
     return view('/auth/login');
 });
 
+
+
 /*---------------------------------------------- Operator Route Start ---------------------------------------------------*/
 
 
 /*---------------------------------------------- Main Route Start ---------------------------------------------------*/
     Route::post('/auth/check', [mainController::class, 'check'])->name('auth.check');
     Route::get('/auth/logout', [mainController::class, 'logout'])->name('auth.logout');
+    
 /*---------------------------------------------- Main Route End ---------------------------------------------------*/
 
 
@@ -58,8 +61,11 @@ Route::post('/Admin/editUser/{id}', [adminController::class, 'update'])->name('e
 Route::get('/Admin/delete/{id}', [adminController::class, 'destroy'])->name('delete');
 
 Route::get('/Admin/managUser', function(){
+    $hakAkses = DB::table('roles')->get();
     $newUser = DB::table('admin')->get();
-    return view('Admin.managUser',['newUser'=>$newUser]);
+    return view('Admin.managUser',['newUser'=>$newUser,
+                                    'role'=>$hakAkses 
+    ]);
 });
 
 Route::get('/Admin/dashboard', function(){
@@ -112,27 +118,27 @@ Route::get('/Manager/Rpt-stock',function(){
 
 Route::group(['middleware'=>['authCheck']], function(){
 /*---------------------------------------------- Dashboard start ---------------------------------------------------*/
-    Route::get('/auth/login', [mainController::class, 'login'])->name('auth.login');
 
+    Route::get('/auth/login', [mainController::class, 'login'])->name('auth.login');
     Route::get('/dashboard', function(){
         $barangCount = barang::count();
         $kategoriCount = kategori::count();
         $receivingCount = receiving::count();
         $issuingCount = issuing::count();
-
+    
         return view('dashboard',[
                     'barang_Count'=> $barangCount,
                     'kategoriCount'=> $kategoriCount,
                     'receivingCount'=> $receivingCount,
                     'issuingCount'=> $issuingCount]);
     });
-
+    
     Route::get('/gudangku',function(){
         $barangCount = barang::count();
         $kategoriCount = kategori::count();
         $receivingCount = receiving::count();
         $issuingCount = issuing::count();
-
+    
         return view('dashboard',['barang_Count'=> $barangCount,
                     'kategoriCount'=> $kategoriCount,
                     'receivingCount'=> $receivingCount,
@@ -144,168 +150,161 @@ Route::group(['middleware'=>['authCheck']], function(){
 
 /*---------------------------------------------- Operator Route start ---------------------------------------------------*/
 
-        // Route Master Data (kategori)
+    // Route Master Data (kategori)
 
-        Route::resource('MD-Kategori',kategoriController::class);
-        Route::post('add-kategori', [kategoriController::class, 'store']);
-        Route::get('/edit-kategori/{id}',[kategoriController::class, 'update'])->name('edit-kategori');
-        Route::get('/edit-kategori/{id}',[kategoriController::class, 'edit'])->name('edit-kategori');
-        Route::get('/delete-kategori/{id}',[kategoriController::class, 'destroy'])->name('delete-kategori');
     
-        // Route::resource('MD-Kategori',kategoriController::class);
-        // Route::post('add-kategori', [kategoriController::class, 'store']);
-        // Route::get('/edit-kategori/{id}', [kategoriController::class, 'update'])->name('edit-kategori');
-        // Route::get('/edit-kategori/{id}','kategoriController@edit')->name('edit-kategori');
-        // Route::post('/delete/{id}',[kategoriController::class,'destroy'])->name('delete');
-    
-        Route::get('/MD-Kategori',function(){
-            $dataKategori = DB::table('kategori')->get(); // get data from database
-    
-            return view('MD-Kategori', ['listKategori' => $dataKategori]); // =>
-            // listKategori = variable yang dikirimnama variable yang bakalan di pake di view nantinya.
-        });
-    
-        Route::put('/edit-kategori/{id}', function($id){
-            $dataKategori = DB::table('kategori')->get(); // get data from database
-    
-            return view('MD-Kategori', ['listKategori' => $dataKategori]); // =>
-            // listKategori = variable yang dikirimnama variable yang bakalan di pake di view nantinya.
-        });
-    
-        // Route Master Data (brand)
-    
-        Route::resource('MD-Brand',brandController::class);
-        Route::post('add-brand',[brandController::class, 'store']);
-        Route::get('/edit-brand/{id}',[brandController::class, 'update'])->name('edit-brand');
-        Route::post('/add-brand/{id}','brandController@update')->name('add-brand');
-        Route::get('/edit-brand/{id}','brandController@edit')->name('edit-brand');
-        Route::post('/delete-brand/{id}',[brandController::class,'destroy'])->name('delete-brand');
-    
-        Route::put('/edit-brand/{id}', function($id){
-    
-            $dataBrand = DB::table('brand')->get(); // get data from database
-    
-            return view('MD-Brand', ['listbrand' => $dataBrand]); // =>
-            // listKategori = variable yang dikirimnama dataBrand yang bakalan di pake di view nantinya.
-        });
-    
-        Route::get('/MD-Brand',function(){
-            $dataBrand = DB::table('brand')->get();
-    
-            return view('MD-Brand', ['listbrand' => $dataBrand]);
-        });
-    
-    
-        // Route Mastr Data (UoM)
-    
-        Route::resource('MD-UoM',uomController::class);
-        Route::post('add-uom', [uomController::class, 'store']);
-        Route::get('/edit-uom/{id}',[uomController::class, 'update'])->name('edit-uom');
-        Route::get('/edit-uom/{id}',[uomController::class, 'edit'])->name('edit-uom');
-        Route::get('/delete-uom/{id}', [uomController::class,'destroy'])->name('delete-uom');
-    
-        Route::get('/MD-UoM',function(){
-    
-            $dataUoM = DB::table('uom')->get();
-            return view('MD-UoM', ['listUoM'=> $dataUoM]);
-        });
-    
-        //Master Data Barang
-        Route::resource('MD-Barang',barangController::class);
-    
-        Route::get('addItem', [barangController::class, 'create'])->name('addItem');
-    
-        Route::post('addItem', [barangController::class, 'store'])->name('addItem');
-    
-        Route::get('/editItem/{id}', [barangController::class, 'edit'])->name('editItem');
-    
-        Route::post('/editItem/{id}', [barangController::class, 'update'])->name('editItem');
-    
-        Route::get('/delete/{id}', [barangController::class,'destroy'])->name('delete');
-    
-        Route::get('/MD-Barang',function(){
-    
-            $dataBarang = DB::table('barang')->get();
-            $dataBrand = DB::table('brand')->get();
-            $dataKategori = DB::table('kategori')->get();
-            $dataUoM = DB::table('uom')->get();
-    
-            return view('MD-Barang', ['listItem'=>$dataBarang,
-                        'listBrand'=>$dataBrand, 
-                        'listKategori'=>$dataKategori, 
-                        'listUoM'=>$dataUoM]);
-    
-        });
-    
-        Route::get('/addItem',function(){
-    
-            $dataBarang = DB::table('barang')->get();
-            $dataBrand = DB::table('brand')->get();
-            $dataKategori = DB::table('kategori')->get();
-            $dataUoM = DB::table('uom')->get();
-    
-            return view('addItem', [
-                'listItem'=>$dataBarang,
+Route::post('add-kategori', [kategoriController::class, 'store']);
+Route::get('/edit-kategori/{id}',[kategoriController::class, 'update'])->name('edit-kategori');
+Route::get('/edit-kategori/{id}',[kategoriController::class, 'edit'])->name('edit-kategori');
+Route::get('/delete-kategori/{id}',[kategoriController::class, 'destroy'])->name('delete-kategori');
+
+Route::get('/MD-Kategori',function(){
+    $dataKategori = DB::table('kategori')->get(); // get data from database
+
+    return view('MD-Kategori', ['listKategori' => $dataKategori]); // =>
+    // listKategori = variable yang dikirimnama variable yang bakalan di pake di view nantinya.
+});
+
+Route::put('/edit-kategori/{id}', function($id){
+    $dataKategori = DB::table('kategori')->get(); // get data from database
+
+    return view('MD-Kategori', ['listKategori' => $dataKategori]); // =>
+    // listKategori = variable yang dikirimnama variable yang bakalan di pake di view nantinya.
+});
+
+// Route Master Data (brand)
+
+Route::resource('MD-Brand',brandController::class);
+Route::post('add-brand',[brandController::class, 'store']);
+Route::get('/edit-brand/{id}',[brandController::class, 'update'])->name('edit-brand');
+Route::post('/add-brand/{id}','brandController@update')->name('add-brand');
+Route::get('/edit-brand/{id}','brandController@edit')->name('edit-brand');
+Route::post('/delete-brand/{id}',[brandController::class,'destroy'])->name('delete-brand');
+
+Route::put('/edit-brand/{id}', function($id){
+
+    $dataBrand = DB::table('brand')->get(); // get data from database
+
+    return view('MD-Brand', ['listbrand' => $dataBrand]); // =>
+    // listKategori = variable yang dikirimnama dataBrand yang bakalan di pake di view nantinya.
+});
+
+Route::get('/MD-Brand',function(){
+    $dataBrand = DB::table('brand')->get();
+
+    return view('MD-Brand', ['listbrand' => $dataBrand]);
+});
+
+
+// Route Mastr Data (UoM)
+
+Route::resource('MD-UoM',uomController::class);
+Route::post('add-uom', [uomController::class, 'store']);
+Route::get('/edit-uom/{id}',[uomController::class, 'update'])->name('edit-uom');
+Route::get('/edit-uom/{id}',[uomController::class, 'edit'])->name('edit-uom');
+Route::get('/delete-uom/{id}', [uomController::class,'destroy'])->name('delete-uom');
+
+Route::get('/MD-UoM',function(){
+
+    $dataUoM = DB::table('uom')->get();
+    return view('MD-UoM', ['listUoM'=> $dataUoM]);
+});
+
+//Master Data Barang
+Route::resource('MD-Barang',barangController::class);
+
+Route::get('addItem', [barangController::class, 'create'])->name('addItem');
+
+Route::post('addItem', [barangController::class, 'store'])->name('addItem');
+
+Route::get('/editItem/{id}', [barangController::class, 'edit'])->name('editItem');
+
+Route::post('/editItem/{id}', [barangController::class, 'update'])->name('editItem');
+
+Route::get('/delete/{id}', [barangController::class,'destroy'])->name('delete');
+
+Route::get('/MD-Barang',function(){
+
+    $dataBarang = DB::table('barang')->get();
+    $dataBrand = DB::table('brand')->get();
+    $dataKategori = DB::table('kategori')->get();
+    $dataUoM = DB::table('uom')->get();
+
+    return view('MD-Barang', ['listItem'=>$dataBarang,
                 'listBrand'=>$dataBrand, 
                 'listKategori'=>$dataKategori, 
-                'listUoM'=>$dataUoM
-            ]);
-        });
-    
-        Route::get('/Rpt-issuing',function(){
-    
-            $rptIssuing = DB::table('issuing')->get();
-    
-            return view('Rpt-issuing',['data'=>$rptIssuing]);
-        });
-    
-        // Route Report-Receiving
-    
-        Route::get('/Rpt-receiving',function(){
-            $rptReceiving = DB::table('receiving')->get();
-            return view('Rpt-receiving',['data'=>$rptReceiving]);
-        });
-    
-        Route::get('/Rpt-stock',function(){
-            $rptStock = DB::table('barang')->get();
-            return view('Rpt-stock',['data'=>$rptStock]);
-        });
-    
-        // Route Receiving
-        Route::get('receiving', [receivingController::class]);
-    
-        Route::get('addReceiving', [receivingController::class, 'create'])->name('addReceiving');
-    
-        Route::post('addReceiving', [receivingController::class, 'store'])->name('addReceiving');
-    
-        Route::get('delete/{id}', [receivingController::class, 'destroy'])->name('delete');
-    
-        Route::get('receivingView',[receivingController::class, 'tampil'])->name('receivingView');
-    
-        Route::get('/receiving',function(){
-    
-            $newReceiving = DB::table('receiving')->get();
-    
-            return view('receiving',['newReceiving'=>$newReceiving]);
-        });
-    
-        // Route Issuing
-        Route::get('issuing', [issuingController::class]);
-    
-        Route::get('addIssuing',[issuingController::class, 'create'])->name('addIssuing');
-    
-        Route::post('addIssuing', [issuingController::class, 'store'])->name('addIssuing');
-    
-        Route::get('delete/{id}',[issuingController::class, 'destroy'])->name('delete');
-    
-        Route::get('Issuing/IssuingView',[issuingController::class, 'tampil'])->name('IssuingView');
-    
-        Route::get('/issuing',function(){
-    
-            $newIssuing = DB::table('issuing')->get();
-    
-            return view('issuing', ['newIssuing'=>$newIssuing]);
-        });
-    
-        /*---------------------------------------------- Operator Route End ---------------------------------------------------*/
+                'listUoM'=>$dataUoM]);
 
+});
+
+Route::get('/addItem',function(){
+
+    $dataBarang = DB::table('barang')->get();
+    $dataBrand = DB::table('brand')->get();
+    $dataKategori = DB::table('kategori')->get();
+    $dataUoM = DB::table('uom')->get();
+
+    return view('addItem', [
+        'listItem'=>$dataBarang,
+        'listBrand'=>$dataBrand, 
+        'listKategori'=>$dataKategori, 
+        'listUoM'=>$dataUoM
+    ]);
+});
+
+Route::get('/Rpt-issuing',function(){
+
+    $rptIssuing = DB::table('issuing')->get();
+
+    return view('Rpt-issuing',['data'=>$rptIssuing]);
+});
+
+// Route Report-Receiving
+
+Route::get('/Rpt-receiving',function(){
+    $rptReceiving = DB::table('receiving')->get();
+    return view('Rpt-receiving',['data'=>$rptReceiving]);
+});
+
+Route::get('/Rpt-stock',function(){
+    $rptStock = DB::table('barang')->get();
+    return view('Rpt-stock',['data'=>$rptStock]);
+});
+
+// Route Receiving
+Route::get('receiving', [receivingController::class]);
+
+Route::get('addReceiving', [receivingController::class, 'create'])->name('addReceiving');
+
+Route::post('addReceiving', [receivingController::class, 'store'])->name('addReceiving');
+
+Route::get('delete/{id}', [receivingController::class, 'destroy'])->name('delete');
+
+Route::get('receivingView',[receivingController::class, 'tampil'])->name('receivingView');
+
+Route::get('/receiving',function(){
+
+    $newReceiving = DB::table('receiving')->get();
+
+    return view('receiving',['newReceiving'=>$newReceiving]);
+});
+
+// Route Issuing
+Route::get('issuing', [issuingController::class]);
+
+Route::get('addIssuing',[issuingController::class, 'create'])->name('addIssuing');
+
+Route::post('addIssuing', [issuingController::class, 'store'])->name('addIssuing');
+
+Route::get('delete/{id}',[issuingController::class, 'destroy'])->name('delete');
+
+Route::get('Issuing/IssuingView',[issuingController::class, 'tampil'])->name('IssuingView');
+
+Route::get('/issuing',function(){
+
+    $newIssuing = DB::table('issuing')->get();
+
+    return view('issuing', ['newIssuing'=>$newIssuing]);
+});
+
+/*---------------------------------------------- Operator Route End ---------------------------------------------------*/

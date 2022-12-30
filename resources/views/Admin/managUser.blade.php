@@ -105,10 +105,10 @@
                           <div class="col-sm-8">
                             <select class="form-select " name="hakAkses" id="hakAkses" aria-label="Default select example" >
                               <option selected disabled>- Pilih Hak Akses -</option>
-                              
-                              <option value="Operator">Operator</option>
-                              <option value="Admin">Admin</option>
-                              <option value="Manager">Manager</option>
+                                
+                                @foreach ($role as $item)
+                                    <option value="{{$item->name}}">{{$item->name}}</option>
+                                @endforeach
                               
                             </select>
                             <span class="text-danger">@error('hakAkses'){{$message}}@enderror</span>
