@@ -18,7 +18,7 @@ class receivingController extends Controller
      */
     public function index()
     {
-        return view('receiving');
+        return view('Operator.receiving');
     }
 
     /**
@@ -29,7 +29,7 @@ class receivingController extends Controller
     public function create()
     {   
         
-        return view('/addReceiving',['listBarang'=>barang::query()->get()]);
+        return view('/Operator/addReceiving',['listBarang'=>barang::query()->get()]);
     }
 
     /**
@@ -52,7 +52,7 @@ class receivingController extends Controller
 
         $newReceiving->save();
 
-        return redirect('receiving')->with('status', 'Barang masuk BERHASIL di tambah!');
+        return redirect('/Operator/receiving')->with('status', 'Barang masuk BERHASIL di tambah!');
 
         
         
@@ -100,17 +100,5 @@ class receivingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $newReceiving = receiving::find($id);
 
-        $newReceiving->delete();
-
-        return redirect()->back()->with('status', 'Item Berhasil Dihapus!');
-    }
-
-    public function tampil(){
-
-        return view('/receivingView');
-    }
 }

@@ -100,7 +100,7 @@
                     <td>{{$data->Keterangan}}</td>
                     <td>
                         <a href="#" class="btn btn-warning btn-sm uil uil-edit editUom" data-bs-target="#editModalUom"></a>
-                        <a href='delete-uom/{{$data->id}}' class="btn btn-danger btn-sm uil uil-trash-alt"></a>
+                        <a href='/delete-uom/{{$data->id}}' class="btn btn-danger btn-sm uil uil-trash-alt"></a>
                     </td>              
                 </tr>
                 

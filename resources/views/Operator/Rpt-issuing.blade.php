@@ -1,12 +1,12 @@
 @extends('layouts.mainlayout')
-@section('title', 'Issuing')
+@section('title', 'Report-Issuing')
 
 @section('content')
 <main class="main-container addItem-form">
 
     <div class="main-title" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Transaction > Issuing
+            <li class="breadcrumb-item active" aria-current="page">Report > Issuing
         </ol>
     </div>
     <hr>
@@ -24,8 +24,8 @@
 
         <!-- TOMBOL TAMBAH DATA -->
         <div class="pb-3 d-flex add-btn">
-            <h2>DATA Issuing</h2>
-            <a type="button" class="btn btn-primary " href="/addIssuing" data-bs-target="#addbarang" data-bs-whatever="@mdo">+Add Item</a>
+            <h2>DATA ISSUING</h2>
+            <a type="button" class="btn btn-primary uil uil-print " href="/Operator/cetakIssuing" data-bs-target="#addbarang" data-bs-whatever="@mdo">Print</a>
         </div>
         <hr>
     
@@ -33,32 +33,38 @@
         <thead>
             <tr>
                 <th class="col-sm-1">No</th>
-                <th class="col-md-4">Date Time</th>
-                <th class="col-md-4">No Referensi</th>
-                <th class="col-md-4">Picker</th>
-                <th class="col-md-1">Remarks</th>
+                <th class="col-md-4">Nama Barang</th>
+                <th class="col-md-2">Picker</th>
+                <th class="col-md-3">Date Time</th>
+                <th class="col-md-3">No Referensi</th>
+                <th class="col-md-4">Jumlah</th>
+                <th class="col-md-1">Satuan</th>
             </tr>
         </thead>
         <tfoot>
             <tr>
                 <th class="col-sm-1">No</th>
-                <th class="col-md-4">Date Time</th>
-                <th class="col-md-4">No Referensi</th>
-                <th class="col-md-4">Picker</th>
-                <th class="col-md-4">Catatan</th>
+                <th class="col-md-4">Nama Barang</th>
+                <th class="col-md-2">Picker</th>
+                <th class="col-md-3">Date Time</th>
+                <th class="col-md-3">No Referensi</th>
+                <th class="col-md-4">Jumlah</th>
+                <th class="col-md-1">Satuan</th>
             </tr>
         </tfoot>
         <tbody>
                 
-            @foreach ($newIssuing as $data)
+            @foreach ($data as $d)
             <tr>    
                 <td>{{$loop->iteration}}</td>
-                <td>{{$data->Date}}</td>
-                <td>{{$data->No_referensi}}</td>
-                <td>{{$data->Picker}}</td>
-                <td>{{$data->Catatan}}</td>     
-            </tr>
-            @endforeach          
+                <td>{{$d->Nama_Barang}}</td>
+                <td>{{$d->Picker}}</td>
+                <td>{{$d->Date}}</td>
+                <td>{{$d->No_referensi}}</td>
+                <td>{{$d->jumlahKeluar}}</td>
+                <td>{{$d->UoM}}</td>    
+            </tr> 
+            @endforeach         
               
             </tbody>
         </table>
@@ -68,7 +74,7 @@
 
 <!-- AKHIR DATA -->
 
-    <script> 
+    <script>
         $(document).ready(function(){
             $('#datatable').DataTable();
         });

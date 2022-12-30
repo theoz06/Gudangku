@@ -1,12 +1,12 @@
 @extends('layouts.mainlayout')
-@section('title', 'Receiving')
+@section('title', 'Report-Stock')
 
 @section('content')
 <main class="main-container addItem-form">
 
     <div class="main-title" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Transaction > Receiving
+            <li class="breadcrumb-item active" aria-current="page">Report > Stock
         </ol>
     </div>
     <hr>
@@ -24,8 +24,8 @@
 
         <!-- TOMBOL TAMBAH DATA -->
         <div class="pb-3 d-flex add-btn">
-            <h2>DATA Receiving</h2>
-            <a type="button" class="btn btn-primary " href="/addReceiving" data-bs-target="#addbarang" data-bs-whatever="@mdo">+Add Item</a>
+            <h2>DATA STOCK</h2>
+            <a type="button" class="btn btn-primary uil uil-print" href="/Operator/cetakStok" data-bs-target="#addbarang" data-bs-whatever="@mdo">Print</a>
         </div>
         <hr>
     
@@ -33,36 +33,38 @@
             <thead>
                 <tr>
                     <th class="col-sm-1">No</th>
-                    <th class="col-md-4">Date Time</th>
-                    <th class="col-md-4">No Referensi</th>
-                    <th class="col-md-4">Supplier</th>
-                    <th class="col-md-1">Remarks</th>
+                    <th class="col-md-4">Nama Barang</th>
+                    <th class="col-md-4">Kategori</th>
+                    <th class="col-md-4">Harga (Rp)</th>
+                    <th class="col-md-2">Stok</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
                     <th class="col-sm-1">No</th>
-                    <th class="col-md-4">Date Time</th>
-                    <th class="col-md-4">No Referensi</th>
-                    <th class="col-md-4">Supplier</th>
-                    <th class="col-md-4">Remarks</th>
+                    <th class="col-md-4">Nama Barang</th>
+                    <th class="col-md-2">Kategori</th>
+                    <th class="col-md-3">Harga</th>
+                    <th class="col-md-2">Stok</th>
                 </tr>
             </tfoot>
             <tbody>
                     
-                @foreach($newReceiving as $key=>$data)
+                    @foreach ($data as $d)
                     <tr>    
-                        <td>{{$loop->iteration}}</td> 
-                        <td>{{$data->Date}}</td>
-                        <td>{{$data->No_referensi}}</td>
-                        <td>{{$data->Supplier}}</td>
-                        <td>{{$data->Catatan}}</td>            
-                    </tr>          
-
-                @endforeach  
-                </tbody>
-            </table>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$d->Nama_barang}}</td>
+                        <td>{{$d->Kategori}}</td>
+                        <td>Rp. {{$d->Price}}</td>
+                        <td>Stock</td>          
+                    </tr>
+                    @endforeach
+                            
+            </tbody>
+        </table>
     </div>
+
+   
 
 <!-- AKHIR DATA -->
 

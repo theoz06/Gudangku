@@ -22,7 +22,7 @@ class barangController extends Controller
     {   
 
 
-        return view ('MD-barang');
+        return view ('Operator/MD-barang');
     }
 
     /**
@@ -33,7 +33,7 @@ class barangController extends Controller
     public function create()
     {
 
-        return view('addItem');
+        return view('/Operator/addItem');
     }
 
     /**
@@ -69,7 +69,7 @@ class barangController extends Controller
 
         $newBarang->save();
         
-        return redirect('MD-Barang')->with('status', 'Item berhasil ditambah');
+        return redirect('/Operator/MD-Barang')->with('status', 'Item berhasil ditambah');
     }
 
     /**
@@ -93,7 +93,7 @@ class barangController extends Controller
     {
         $item = barang::query()->findOrFail($id);
 
-        return view('editItem', [
+        return view('Operator.editItem', [
             'data' => $item,
             'listBrand' => brand::query()->get(),
             'listKategori' => kategori::query()->get(),
@@ -140,7 +140,7 @@ class barangController extends Controller
         
         $newBarang->save();
 
-        return redirect('MD-Barang')->with('status','Data barang BERHASIL di ubah');
+        return redirect('/Operator/MD-Barang')->with('status','Data barang BERHASIL di ubah');
     }
 
     /**

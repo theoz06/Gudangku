@@ -116,7 +116,7 @@
                                 <div class="sidebar-list-icon">
                                     <i class="uil uil-monitor"></i>
                                 </div>
-                                <a href="/MD-Barang" class="sidebar-link sidebar-title">Master Data Barang</a>
+                                <a href="/Operator/MD-Barang" class="sidebar-link sidebar-title">Master Data Barang</a>
                             </div>
                         </li>
                     </ul>
@@ -129,7 +129,7 @@
                                 <div class="sidebar-list-icon">
                                     <i class="uil uil-shopping-cart"></i>
                                 </div>
-                                <a href="/receiving" class="sidebar-link sidebar-title">Receiving (In)</a>
+                                <a href="/Operator/receiving" class="sidebar-link sidebar-title">Receiving (In)</a>
                             </div>
                         </li>
                     </ul>
@@ -142,7 +142,7 @@
                                 <div class="sidebar-list-icon">
                                     <i class="uil uil-truck"></i>
                                 </div>
-                                <a href="/issuing" class="sidebar-link sidebar-title">Issuing (Out)</a>
+                                <a href="/Operator/issuing" class="sidebar-link sidebar-title">Issuing (Out)</a>
                             </div>
                         </li>
                     </ul>
@@ -163,9 +163,9 @@
                             <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
                                     <ul class="accordion-content">
-                                        <li class="accordion-content-menu " type="button"><a href="/Rpt-receiving">Receiving (in)</a></li>
-                                        <li class="accordion-content-menu " type="button"><a href="/Rpt-issuing">Issuing (out)</a></li>
-                                        <li class="accordion-content-menu " type="button"><a href="/Rpt-stock">Stock</a></li>
+                                        <li class="accordion-content-menu " type="button"><a href="/Operator/Rpt-receiving">Receiving (in)</a></li>
+                                        <li class="accordion-content-menu " type="button"><a href="/Operator/Rpt-issuing">Issuing (out)</a></li>
+                                        <li class="accordion-content-menu " type="button"><a href="/Operator/Rpt-stock">Stock</a></li>
                                     </ul>
                                 </div>
                             </div>

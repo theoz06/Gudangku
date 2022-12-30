@@ -12,7 +12,7 @@
 </div>
 <hr>
 
-    <form action="{{ url('addReceiving') }}" method="POST" class="row-2 inputform" style="border: 1px solid #E2E3FC" enctype="multipart/form-data">
+    <form action="{{ url('/Operator/addReceiving') }}" method="POST" class="row-2 inputform" style="border: 1px solid #E2E3FC" enctype="multipart/form-data">
       
         @csrf
 

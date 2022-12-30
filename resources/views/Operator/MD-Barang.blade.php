@@ -25,7 +25,7 @@
         <!-- TOMBOL TAMBAH DATA -->
         <div class="pb-3 d-flex add-btn">
             <h2>DATA BARANG</h2>
-            <a type="button" class="btn btn-primary " href="/addItem" data-bs-target="#addbarang" data-bs-whatever="@mdo">+Add Item</a>
+            <a type="button" class="btn btn-primary " href="/Operator/addItem" data-bs-target="#addbarang" data-bs-whatever="@mdo">+Add Item</a>
         </div>
         <hr>
     
@@ -61,7 +61,7 @@
                     <td>
                         <button href="#" data-bs-toggle="modal" data-bs-target="#view-{{ $data->id }}" class="btn btn-sm uil uil-folder-open btn-success"></button>
                         <a href="{{ route('editItem', [ 'id' => $data->id ]) }}" class="btn btn-warning btn-sm uil uil-edit editBarang" ></a>
-                        <a href='delete/{{$data->id}}' class="btn btn-danger btn-sm uil uil-trash-alt"></a>
+                        <a href='/delete/{{$data->id}}' class="btn btn-danger btn-sm uil uil-trash-alt"></a>
                     </td>              
                 </tr>
                 

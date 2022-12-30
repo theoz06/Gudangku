@@ -12,7 +12,7 @@
 </div>
 <hr>
 
-    <form action="{{ url('addItem') }}" method="POST" class="row-2 inputform" enctype="multipart/form-data">
+    <form action="{{ url('/Operator/addItem') }}" method="POST" class="row-2 inputform" enctype="multipart/form-data">
         
         @csrf
 

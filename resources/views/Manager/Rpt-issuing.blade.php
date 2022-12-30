@@ -25,7 +25,7 @@
         <!-- TOMBOL TAMBAH DATA -->
         <div class="pb-3 d-flex add-btn">
             <h2>DATA ISSUING</h2>
-            <a type="button" class="btn btn-primary uil uil-print " href="/addItem" data-bs-target="#addbarang" data-bs-whatever="@mdo">Print</a>
+            <a type="button" class="btn btn-primary uil uil-print " href="/Operator/cetakIssuing" data-bs-target="#addbarang" data-bs-whatever="@mdo">Print</a>
         </div>
         <hr>
     

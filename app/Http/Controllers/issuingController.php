@@ -25,7 +25,7 @@ class issuingController extends Controller
      */
     public function create()
     {
-        return view('addIssuing', ['listBarang'=>barang::query()->get()]);
+        return view('Operator.addIssuing', ['listBarang'=>barang::query()->get()]);
     }
 
     /**
@@ -48,7 +48,7 @@ class issuingController extends Controller
 
         $newIssuing->save();
 
-        return redirect('issuing')->with('status', 'Barang masuk BERHASIL di tambah!');
+        return redirect('/Operator/issuing')->with('status', 'Barang masuk BERHASIL di tambah!');
     }
 
     /**
@@ -93,6 +93,10 @@ class issuingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $newIssuing = barang::find($id);
+
+        $newIssuing->delete();
+
+        return redirect()->back()->with('status', 'Item berhasil dihapus');
     }
 }

@@ -58,4 +58,5 @@ class mainController extends Controller
 
         return view('dashboard', $data);
     }
+
 }
