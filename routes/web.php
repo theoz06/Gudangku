@@ -61,23 +61,24 @@ Route::post('/Admin/editUser/{id}', [adminController::class, 'update'])->name('e
 Route::get('/Admin/delete/{id}', [adminController::class, 'destroy'])->name('delete');
 
 Route::get('/Admin/managUser', function(){
-    $hakAkses = DB::table('roles')->get();
     $newUser = DB::table('admin')->get();
     return view('Admin.managUser',['newUser'=>$newUser,
-                                    'role'=>$hakAkses 
     ]);
 });
 
 Route::get('/Admin/dashboard', function(){
-    $barangCount = barang::count();
-    $kategoriCount = kategori::count();
-    $receivingCount = receiving::count();
-    $issuingCount = issuing::count();
+        $userCount = admin::count();
+        $barangCount = barang::count();
+        $kategoriCount = kategori::count();
+        $receivingCount = receiving::count();
+        $issuingCount = issuing::count();
 
-    return view('Admin.dashboard',['barang_Count'=> $barangCount,
-                'kategoriCount'=> $kategoriCount,
-                'receivingCount'=> $receivingCount,
-                'issuingCount'=> $issuingCount]);
+        return view('Admin.dashboard',[
+                    'userCount'=>$userCount,
+                    'barang_Count'=> $barangCount,
+                    'kategoriCount'=> $kategoriCount,
+                    'receivingCount'=> $receivingCount,
+                    'issuingCount'=> $issuingCount]);
 });
 /*---------------------------------------------- Admin Route End ---------------------------------------------------*/
 
@@ -86,15 +87,18 @@ Route::get('/Admin/dashboard', function(){
 Route::get('/Manager/managerDashboard', [managerController::class, 'index'])->name('managerDashboard');
 
 Route::get('/Manager/managerDashboard', function(){
-        $barangCount = barang::count();
-        $kategoriCount = kategori::count();
-        $receivingCount = receiving::count();
-        $issuingCount = issuing::count();
+    $userCount = admin::count();
+    $barangCount = barang::count();
+    $kategoriCount = kategori::count();
+    $receivingCount = receiving::count();
+    $issuingCount = issuing::count();
 
-        return view('Manager.managerDashboard',['barang_Count'=> $barangCount,
-                    'kategoriCount'=> $kategoriCount,
-                    'receivingCount'=> $receivingCount,
-                    'issuingCount'=> $issuingCount]);
+    return view('Manager.managerdashboard',[
+                'userCount'=>$userCount,
+                'barang_Count'=> $barangCount,
+                'kategoriCount'=> $kategoriCount,
+                'receivingCount'=> $receivingCount,
+                'issuingCount'=> $issuingCount]);
 });
 
 Route::get('/Manager/Rpt-issuing',function(){
@@ -121,12 +125,14 @@ Route::group(['middleware'=>['authCheck']], function(){
 
     Route::get('/auth/login', [mainController::class, 'login'])->name('auth.login');
     Route::get('/dashboard', function(){
+        $userCount = admin::count();
         $barangCount = barang::count();
         $kategoriCount = kategori::count();
         $receivingCount = receiving::count();
         $issuingCount = issuing::count();
-    
+
         return view('dashboard',[
+                    'userCount'=>$userCount,
                     'barang_Count'=> $barangCount,
                     'kategoriCount'=> $kategoriCount,
                     'receivingCount'=> $receivingCount,
@@ -134,12 +140,15 @@ Route::group(['middleware'=>['authCheck']], function(){
     });
     
     Route::get('/gudangku',function(){
+        $userCount = admin::count();
         $barangCount = barang::count();
         $kategoriCount = kategori::count();
         $receivingCount = receiving::count();
         $issuingCount = issuing::count();
-    
-        return view('dashboard',['barang_Count'=> $barangCount,
+
+        return view('dashboard',[
+                    'userCount'=>$userCount,
+                    'barang_Count'=> $barangCount,
                     'kategoriCount'=> $kategoriCount,
                     'receivingCount'=> $receivingCount,
                     'issuingCount'=> $issuingCount]);

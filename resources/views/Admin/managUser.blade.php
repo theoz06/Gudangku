@@ -106,8 +106,8 @@
                             <select class="form-select " name="hakAkses" id="hakAkses" aria-label="Default select example" >
                               <option selected disabled>- Pilih Hak Akses -</option>
                                 
-                                @foreach ($role as $item)
-                                    <option value="{{$item->name}}">{{$item->name}}</option>
+                                @foreach ($newUser as $item)
+                                    <option value="{{$item->hakAkses}}">{{$item->hakAkses}}</option>
                                 @endforeach
                               
                             </select>

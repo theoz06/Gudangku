@@ -37,7 +37,6 @@
                 <th class="col-md-4">No Referensi</th>
                 <th class="col-md-4">Picker</th>
                 <th class="col-md-1">Remarks</th>
-                <th class="col-md-1">Aksi</th>
             </tr>
         </thead>
         <tfoot>
@@ -47,7 +46,6 @@
                 <th class="col-md-4">No Referensi</th>
                 <th class="col-md-4">Picker</th>
                 <th class="col-md-4">Catatan</th>
-                <th class="col-md-1">Aksi</th>
             </tr>
         </tfoot>
         <tbody>
@@ -58,10 +56,7 @@
                 <td>{{$data->Date}}</td>
                 <td>{{$data->No_referensi}}</td>
                 <td>{{$data->Picker}}</td>
-                <td>{{$data->Catatan}}</td>
-                <td>
-                    <a type="button" href="/Issuing/IssuingView" class="btn uil uil-folder-open bg-warning " style="color: green;  border:none; border-radius:3px"></a>
-                </td>              
+                <td>{{$data->Catatan}}</td>     
             </tr>
             @endforeach          
               

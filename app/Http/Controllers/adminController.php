@@ -21,12 +21,15 @@ class adminController extends Controller
      */
     public function index()
     {
+        $userCount = admin::count();
         $barangCount = barang::count();
         $kategoriCount = kategori::count();
         $receivingCount = receiving::count();
         $issuingCount = issuing::count();
 
-        return view('Admin.dashboard',['barang_Count'=> $barangCount,
+        return view('Admin.dashboard',[
+                    'userCount'=>$userCount,
+                    'barang_Count'=> $barangCount,
                     'kategoriCount'=> $kategoriCount,
                     'receivingCount'=> $receivingCount,
                     'issuingCount'=> $issuingCount]);

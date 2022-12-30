@@ -37,9 +37,9 @@
     
         <div class="card">
             <div class="card-inner">
-                <p class="title">New Item</p>
+                <p class="title">Kategori</p>
             </div>
-            <span class="title">4</span>
+            <span class="title">{{$kategoriCount}}</span>
             <i class="uil uil-plus bg-success"></i>
         </div>
     
@@ -56,10 +56,10 @@
     
             <div class="mini-card-item">
                 <div class="card-inner">
-                    <p class="title">Stock</p>
+                    <p class="title">User</p>
                 </div>
-                <span class="title">10</span>
-                <i class="uil uil-desktop "></i>
+                <span class="title">{{$userCount}}</span>
+                <i class="uil uil-user "></i>
             </div>
     
             <div class="mini-card-item">
